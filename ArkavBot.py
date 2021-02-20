@@ -43,23 +43,23 @@ class MyClient(discord.Client):
             return
         
         if message.content == '!checkall':
-            await message.channel.send("H-" + countdown())
+            await message.channel.send("Pengumuman H-" + countdown())
             await message.channel.send("Title/Vote/Comment")
             tr_nodes = openweb()
             judul, comment, vote = check(tr_nodes)
             for n in reversed(range(25)):
                 await message.channel.send(str(judul[n])[3:-3] + " " + str(vote[n])[2:-2] + " " + str(comment[n])[2:-2])
-            await message.channel.send("Median = " + str(median(vote)) + ".Done")
+            await message.channel.send("Median = " + str(median(vote)) + " ~Done")
 
         if '!top' in message.content:
-            await message.channel.send("H-" + countdown())
+            await message.channel.send("Pengumuman H-" + countdown())
             await message.channel.send("Title/Vote/Comment")
             tr_nodes = openweb()
             judul, comment, vote = check(tr_nodes)
             for n in range(24, 24-int(re.sub("[^0-9]", "", message.content)), -1):
                 await message.channel.send(str(judul[n])[3:-3] + " " + str(vote[n])[2:-2] + " " + str(comment[n])[2:-2])
-            await message.channel.send("Median = " + str(median(vote)) + " .Done")
+            await message.channel.send("Median = " + str(median(vote)) + " ~Done")
 
 client = MyClient()
-client.run('xxxxx')
+client.run('XXXX')
 # print(discord.__version__)
