@@ -3,7 +3,17 @@ import discord
 import re
 import urllib.request
 import numpy as np
+from datetime import datetime
 
+def countdown():
+    dday, dhour = 22, 20
+    now = datetime.now().strftime("%d:%H")
+    day, hour = now.split(':')
+    day = dday - int(day)
+    hour = dhour - int(hour)
+    
+    return str(day) if day>1 else str(hour) + " Jam"
+    
 
 def openweb():
     web = urllib.request.urlopen("https://itch.io/jam/arkav-game-jam-2021/unrated")
@@ -33,7 +43,7 @@ class MyClient(discord.Client):
             return
         
         if message.content == '!checkall':
-            await message.channel.send("Fetching Data...")
+            await message.channel.send("H-" + countdown())
             await message.channel.send("Title/Vote/Comment")
             tr_nodes = openweb()
             judul, comment, vote = check(tr_nodes)
@@ -42,7 +52,7 @@ class MyClient(discord.Client):
             await message.channel.send("Median = " + str(median(vote)) + ".Done")
 
         if '!top' in message.content:
-            await message.channel.send("Fetching Data...")
+            await message.channel.send("H-" + countdown())
             await message.channel.send("Title/Vote/Comment")
             tr_nodes = openweb()
             judul, comment, vote = check(tr_nodes)
